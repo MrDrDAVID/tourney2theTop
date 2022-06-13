@@ -6,4 +6,5 @@ from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
 def register(request) :
-    return
+    if request.method == 'GET' :
+        return render(request, 'register/register.html', {'form': UserCreationForm()})
