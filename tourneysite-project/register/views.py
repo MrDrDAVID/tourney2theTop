@@ -44,4 +44,4 @@ def user_logout(request) :
     if request.method == 'POST' :
         logout(request)
 
-        return redirect('home')
+        return redirect('dashboard')
