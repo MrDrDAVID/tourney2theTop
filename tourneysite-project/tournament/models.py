@@ -3,11 +3,18 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Tournament(models.Model) :
+    class MaxParticipants(models.IntegerChoices) :
+        SMALL = 16
+        MEDIUM = 32
+        LARGE = 64
+        X_LARGE = 128
+
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     game_title = models.CharField(max_length=50)
     date_posted = models.DateField(auto_now_add=True)
     description_rules = models.TextField()
     game_image = models.ImageField()
+    max_participants = models.IntegerField(choices=MaxParticipants.choices)
 
     def __str__(self) :
         return self.game_title
@@ -27,3 +34,5 @@ class Matches(models.Model) :
     competitor_one = models.ForeignKey(User, related_query_name='competitor_one')
     competitor_two = models.ForeignKey(User, related_name='competitor_two')
     round_num = models.IntegerField()
+    winner = models.CharField(max_length=30)
+    loser = models.CharField(max_length=30)
