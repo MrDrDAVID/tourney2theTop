@@ -15,6 +15,7 @@ class Tournament(models.Model) :
     description_rules = models.TextField()
     game_image = models.ImageField()
     max_participants = models.IntegerField(choices=MaxParticipants.choices)
+    winner = models.CharField(max_length=30)
 
     def __str__(self) :
         return self.game_title
@@ -36,3 +37,6 @@ class Matches(models.Model) :
     round_num = models.IntegerField()
     winner = models.CharField(max_length=30)
     loser = models.CharField(max_length=30)
+
+    def __str__(self) :
+        return self.competitor_one.username + 'vs ' + self.competitor_two.username
