@@ -32,8 +32,8 @@ class Participants(models.Model) :
 
 class Matches(models.Model) :
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
-    competitor_one = models.ForeignKey(User, related_query_name='competitor_one')
-    competitor_two = models.ForeignKey(User, related_name='competitor_two')
+    competitor_one = models.ForeignKey(User, related_query_name='competitor_one', on_delete=models.CASCADE)
+    competitor_two = models.ForeignKey(User, related_name='competitor_two', on_delete=models.CASCADE)
     round_num = models.IntegerField()
     winner = models.CharField(max_length=30)
     loser = models.CharField(max_length=30)
