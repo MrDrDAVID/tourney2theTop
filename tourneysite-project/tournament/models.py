@@ -13,9 +13,9 @@ class Tournament(models.Model) :
     game_title = models.CharField(max_length=50)
     date_posted = models.DateField(auto_now_add=True)
     description_rules = models.TextField()
-    game_image = models.ImageField()
+    game_image = models.ImageField(blank=True)
     max_participants = models.IntegerField(choices=MaxParticipants.choices)
-    winner = models.CharField(max_length=30)
+    winner = models.CharField(max_length=30, blank=True)
 
     def __str__(self) :
         return self.game_title
@@ -32,11 +32,11 @@ class Participants(models.Model) :
 
 class Matches(models.Model) :
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
-    competitor_one = models.ForeignKey(User, related_query_name='competitor_one', on_delete=models.CASCADE)
+    competitor_one = models.ForeignKey(User, related_name='competitor_one', on_delete=models.CASCADE)
     competitor_two = models.ForeignKey(User, related_name='competitor_two', on_delete=models.CASCADE)
     round_num = models.IntegerField()
-    winner = models.CharField(max_length=30)
-    loser = models.CharField(max_length=30)
+    winner = models.CharField(max_length=30, blank=True)
+    loser = models.CharField(max_length=30, blank=True)
 
     def __str__(self) :
-        return self.competitor_one.username + 'vs ' + self.competitor_two.username
+        return self.competitor_one.username + ' vs ' + self.competitor_two.username
