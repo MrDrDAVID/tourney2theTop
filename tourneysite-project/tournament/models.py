@@ -30,6 +30,9 @@ class Participants(models.Model) :
     def __str__(self) :
         return self.participant.username
 
+    class Meta :
+        verbose_name_plural = 'Participants'
+
 class Matches(models.Model) :
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
     competitor_one = models.ForeignKey(User, related_name='competitor_one', on_delete=models.CASCADE)
@@ -40,3 +43,6 @@ class Matches(models.Model) :
 
     def __str__(self) :
         return self.competitor_one.username + ' vs ' + self.competitor_two.username
+
+    class Meta :
+        verbose_name_plural = 'Matches'
