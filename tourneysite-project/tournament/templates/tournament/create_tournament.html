@@ -1,0 +1,33 @@
+{% extends 'tournament/base.html' %}
+
+{% block title %}Create{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Game Title</span>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01"># of Participants</label>
+            <select class="form-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            <option value="16">Small - 16</option>
+            <option value="32">Medium - 32</option>
+            <option value="64">Large - 64</option>
+            <option value="128">X-Large - 128</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text">Description/Rules</span>
+            <textarea class="form-control" aria-label="With textarea"></textarea>
+        </div><br>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupFile01">Upload Image</label>
+            <input type="file" class="form-control" id="inputGroupFile01">
+        </div>
+
+        <button type="submit" class="btn btn-secondary btn-lg">Create Tournament</button>
+    </form>
+{% endblock %}
